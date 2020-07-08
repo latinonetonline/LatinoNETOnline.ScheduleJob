@@ -35,4 +35,4 @@ jobs:
         
     - uses: ./
       with:
-        who-to-greet: 'world'
+        workflow: 'Emply'

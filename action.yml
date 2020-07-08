@@ -1,7 +1,7 @@
 name: 'Template NET Core Action'
 description: 'Console greet whoever you tell'
 inputs:
-  who-to-greet: 
+  workflow: 
     required: true
 runs:
   using: 'node12'
