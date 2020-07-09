@@ -1,4 +1,5 @@
-﻿using GitHubActionSharp;
+﻿using System.Threading.Tasks;
+using GitHubActionSharp;
 using LatinoNETOnline.ScheduleJob.Application.Services;
 using LatinoNETOnline.ScheduleJob.Application.Services.Interfaces;
 using MediatR;
@@ -9,7 +10,7 @@ namespace LatinoNETOnline.ScheduleJob
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             GitHubActionContext actionContext = new GitHubActionContext(args);
             actionContext.LoadParameters();
@@ -27,7 +28,7 @@ namespace LatinoNETOnline.ScheduleJob
 
             var jobApplicationService = serviceProvider.GetService<IJobApplicationService>();
 
-            jobApplicationService.StartJob();
+            await jobApplicationService.StartJob();
         }
     }
 }

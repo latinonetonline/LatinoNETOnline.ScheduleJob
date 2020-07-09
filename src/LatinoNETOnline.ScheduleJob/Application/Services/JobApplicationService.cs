@@ -25,7 +25,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Services
         {
             _logger.LogInformation("Starting application");
 
-            string workflow = _gitHubActionContext.GetParameter(Enums.Parameters.Workflow);
+            string workflow = _gitHubActionContext.GetParameter(Enums.Parameters.Workflow).Trim();
 
             _logger.LogInformation($"Received workflow name: {workflow}");
 
