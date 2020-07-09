@@ -7,17 +7,17 @@ namespace LatinoNETOnline.ScheduleJob.Application.Enums
         [Parameter("workflow")]
         Workflow,
 
-        [Parameter("twitter-client-id")]
-        TwitterClientId,
+        [Parameter("twitter-consumer-id")]
+        TwitterConsumerId,
 
-        [Parameter("twitter-client-secret")]
-        TwitterClientSecret,
+        [Parameter("twitter-consumer-secret")]
+        TwitterConsumerSecret,
 
-        [Parameter("twitter-access-token-public")]
-        TwitterAccessTokenPublic,
+        [Parameter("twitter-access-token")]
+        TwitterAccessToken,
 
-        [Parameter("twitter-access-token-private")]
-        TwitterAccessTokenPrivate,
+        [Parameter("twitter-access-token-secret")]
+        TwitterAccessTokenSecret,
 
         [Parameter("github-access-token")]
         GitHubAccessToken,

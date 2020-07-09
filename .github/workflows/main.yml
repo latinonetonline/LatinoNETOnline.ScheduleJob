@@ -35,5 +35,9 @@ jobs:
         
     - uses: ./
       with:
-        workflow: 'Emply'
+        workflow: 'Thursday'
+        twitter-consumer-id: ${{ secrets.TWITTER_CONSUMER_ID }}
+        twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+        twitter-access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+        twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         github-access-token: ${{ secrets.GITHUB_TOKEN }}

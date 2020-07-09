@@ -3,7 +3,15 @@ description: 'Console greet whoever you tell'
 inputs:
   workflow: 
     required: true
-  github-access-token:
+  twitter-consumer-id:
+    required: true
+  twitter-consumer-secret:
+    required: true
+  twitter-access-token:
+    required: true
+  twitter-access-token:
+    required: true
+  github-access-token-secret:
     required: true
 runs:
   using: 'node12'

@@ -26,6 +26,8 @@ namespace LatinoNETOnline.ScheduleJob
                 .AddSingleton(workflowsRequestsContext)
                 .AddSingleton<IJobApplicationService, JobApplicationService>()
                 .AddSingleton<IEventService, EventService>()
+                .AddSingleton<ITwitterService, TwitterService>()
+                .AddHttpClient()
                 .AddMediatR(typeof(Program))
                 .BuildServiceProvider();
 
