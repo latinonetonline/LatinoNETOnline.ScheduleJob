@@ -9,7 +9,7 @@ inputs:
     required: true
   twitter-access-token:
     required: true
-  twitter-access-token:
+  twitter-access-token-secret:
     required: true
   github-access-token-secret:
     required: true
