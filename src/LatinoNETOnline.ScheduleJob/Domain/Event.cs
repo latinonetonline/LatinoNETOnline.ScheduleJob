@@ -10,7 +10,8 @@ namespace LatinoNETOnline.ScheduleJob.Domain
         public DateTime Date { get; set; }
         public string ImageUrl { get; set; }
         public string Speaker { get; set; }
-        public string EventbriteId { get; set; }
+        public string TwitterSpeaker { get; set; }
+        public string EventbriteEventId { get; set; }
         public bool IsDraft { get; set; }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using LatinoNETOnline.ScheduleJob.Application.Enums;
 using LatinoNETOnline.ScheduleJob.Application.Services;
 using LatinoNETOnline.ScheduleJob.Domain;
 using MediatR;
@@ -32,11 +34,62 @@ namespace LatinoNETOnline.ScheduleJob.Application.Workflows.Thursday
 
             _logger.LogInformation($"The Next Event is: {@event.Title}");
 
-            byte[] image = await _httpClient.GetByteArrayAsync("https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144269/osirisrexview_earthmoon_201817.jpg");
+            Random random = new Random();
+            int nroRandom = random.Next(1, 3);
 
-            Uri tweetUri = await _twitterService.CreateTweet("test", image);
+            string tweetText = nroRandom switch
+            {
+                1 => BuildTweetText1(@event),
+                2 => BuildTweetText2(@event),
+                3 => BuildTweetText3(@event),
+                _ => BuildTweetText1(@event)
+            };
+
+            byte[] image = await _httpClient.GetByteArrayAsync(@event.ImageUrl);
+
+            Uri tweetUri = await _twitterService.CreateTweet(tweetText, image);
 
             _logger.LogInformation($"Tweet created: {tweetUri}");
+        }
+
+        string BuildTweetText1(Event @event)
+        {
+            string speaker = string.IsNullOrWhiteSpace(@event.TwitterSpeaker) ? @event.Speaker : @event.TwitterSpeaker;
+            string date = $"{(DayOfWeekSpanish)@event.Date.DayOfWeek} 📅 {@event.Date.Day} de {(Month)@event.Date.Month}";
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("⚠️¡¡ALERTA WEBINAR!!⚠️");
+            sb.AppendLine($"El {date} a las 🕒 {@event.Date.Hour}hs UTC junto a 🤝 {speaker} les traemos una interesante charla titulada 📚 {@event.Title}.");
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine("¡No lo dejes pasar! 👉👉 Regístrate en https://latinonet.online/links#registro");
+            return sb.ToString();
+        }
+
+        string BuildTweetText2(Event @event)
+        {
+            string speaker = string.IsNullOrWhiteSpace(@event.TwitterSpeaker) ? @event.Speaker : @event.TwitterSpeaker;
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("⛔¡¡ATENCIÓN NUEVO WEBINAR!!⛔");
+            sb.AppendLine($"Este {(DayOfWeekSpanish)@event.Date.DayOfWeek} {@event.Date.Day} a las {@event.Date.Hour} 🕒 horas UTC, {speaker} nos va a compartir 📚 {@event.Title}.");
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine("¡Agendalo! Inscríbete aquí 👇👇");
+            sb.AppendLine("https://latinonet.online/links#registro");
+            return sb.ToString();
+        }
+
+        string BuildTweetText3(Event @event)
+        {
+            string speaker = string.IsNullOrWhiteSpace(@event.TwitterSpeaker) ? @event.Speaker : @event.TwitterSpeaker;
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("🚨¡¡PROXIMO WEBINAR!! 🚨");
+            sb.AppendLine($"Como todas las semanas 😎, traemos un nuevo webinar.");
+            sb.AppendLine($" De la mano de 👉 {speaker} presentamos 📚 {@event.Title}, este {(DayOfWeekSpanish)@event.Date.DayOfWeek} 📅 {@event.Date.Day} a las {@event.Date.Hour} hs 🕒 UTC.");
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine("¡No te lo podes perder! Inscríbete 👇👇");
+            sb.AppendLine("https://latinonet.online/links#registro");
+            return sb.ToString();
         }
     }
 }
