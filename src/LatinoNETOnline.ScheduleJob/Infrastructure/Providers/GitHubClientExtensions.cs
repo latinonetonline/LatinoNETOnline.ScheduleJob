@@ -1,5 +1,7 @@
 ﻿using GitHubActionSharp;
 using LatinoNETOnline.ScheduleJob.Application.Enums;
+using LatinoNETOnline.ScheduleJob.Application.Services;
+using LatinoNETOnline.ScheduleJob.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Octokit;
 
@@ -15,6 +17,7 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Providers
             githubClient.Credentials = basicAuth;
 
             services.AddSingleton<IGitHubClient, GitHubClient>(service => githubClient);
+            services.AddSingleton<IGitHubService, GitHubService>();
 
             return services;
         }
