@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ScheduleAllThursday
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 17 * * 4'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  job:
+    name: test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.100'
+        
+    - uses: ./
+      with:
+        workflow: 'Thursday'
+        twitter-consumer-id: ${{ secrets.TWITTER_CONSUMER_ID }}
+        twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+        twitter-access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+        twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        github-access-token: ${{ secrets.GITHUB_TOKEN }}
