@@ -21,5 +21,8 @@ namespace LatinoNETOnline.ScheduleJob.Application.Enums
 
         [Parameter("github-access-token")]
         GitHubAccessToken,
+
+        [Parameter("identity-client-secret")]
+        IdentityClientSecret,
     }
 }

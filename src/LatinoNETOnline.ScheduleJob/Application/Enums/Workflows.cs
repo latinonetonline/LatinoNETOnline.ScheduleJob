@@ -2,7 +2,7 @@
 {
     public enum Workflows
     {
-        Emply,
+        Test,
         Thursday,
         Friday
     }

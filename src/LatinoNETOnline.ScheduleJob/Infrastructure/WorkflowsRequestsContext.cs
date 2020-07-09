@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using LatinoNETOnline.ScheduleJob.Application.Enums;
-using LatinoNETOnline.ScheduleJob.Application.Workflows.Emply;
+using LatinoNETOnline.ScheduleJob.Application.Workflows.Test;
 using LatinoNETOnline.ScheduleJob.Application.Workflows.Thursday;
 using MediatR;
 
@@ -22,7 +22,7 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure
 
         private readonly IReadOnlyDictionary<Workflows, IRequest> Pairs = new Dictionary<Workflows, IRequest>
             {
-                { Workflows.Emply, new EmplyRequest() },
+                { Workflows.Test, new TestRequest() },
                 { Workflows.Thursday, new ThursdayRequest() }
             };
     }

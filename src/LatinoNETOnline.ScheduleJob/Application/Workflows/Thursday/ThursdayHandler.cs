@@ -17,25 +17,29 @@ namespace LatinoNETOnline.ScheduleJob.Application.Workflows.Thursday
         private readonly IEventService _eventService;
         private readonly ITwitterService _twitterService;
         private readonly HttpClient _httpClient;
+        private readonly ITelegramService _telegramService;
 
-        public ThursdayHandler(ILoggerFactory loggerFactory, IEventService eventService, ITwitterService twitterService, IHttpClientFactory httpClientFactory)
+        public ThursdayHandler(ILoggerFactory loggerFactory, IEventService eventService, ITwitterService twitterService, IHttpClientFactory httpClientFactory, ITelegramService telegramService)
         {
             _logger = loggerFactory.CreateLogger<ThursdayHandler>();
             _eventService = eventService;
             _twitterService = twitterService;
             _httpClient = httpClientFactory.CreateClient();
+            _telegramService = telegramService;
         }
 
         protected override async Task Handle(ThursdayRequest request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Starting Thursday Workflow");
 
+            Task telegramTask = _telegramService.AnnouncementSendNextEvent();
+
             Event @event = await _eventService.GetNextEventAsync();
 
             _logger.LogInformation($"The Next Event is: {@event.Title}");
 
             Random random = new Random();
-            int nroRandom = random.Next(1, 3);
+            int nroRandom = random.Next(1, 4);
 
             string tweetText = nroRandom switch
             {
@@ -50,6 +54,8 @@ namespace LatinoNETOnline.ScheduleJob.Application.Workflows.Thursday
             Uri tweetUri = await _twitterService.CreateTweet(tweetText, image);
 
             _logger.LogInformation($"Tweet created: {tweetUri}");
+
+            Task.WaitAll(telegramTask);
         }
 
         string BuildTweetText1(Event @event)

@@ -3,8 +3,6 @@ name: .NET Core Action Template
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
@@ -35,9 +33,10 @@ jobs:
         
     - uses: ./
       with:
-        workflow: 'Emply'
+        workflow: 'Test'
         twitter-consumer-id: ${{ secrets.TWITTER_CONSUMER_ID }}
         twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
         twitter-access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
         twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        identity-client-secret: ${{ secrets.IDENTITY_CLIENT_SECRET }}
         github-access-token: ${{ secrets.GITHUB_TOKEN }}

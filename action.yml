@@ -11,6 +11,8 @@ inputs:
     required: true
   twitter-access-token-secret:
     required: true
+  identity-client-secret: 
+    required: true
   github-access-token-secret:
     required: true
 runs:

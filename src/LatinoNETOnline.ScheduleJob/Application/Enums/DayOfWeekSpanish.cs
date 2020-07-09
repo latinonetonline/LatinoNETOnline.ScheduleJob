@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LatinoNETOnline.ScheduleJob.Application.Enums
+﻿namespace LatinoNETOnline.ScheduleJob.Application.Enums
 {
-    public enum  DayOfWeekSpanish
+    public enum DayOfWeekSpanish
     {
         //
         // Resumen:
