@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using LatinoNETOnline.ScheduleJob.Application.Workflows.Emply;
 using LatinoNETOnline.ScheduleJob.Application.Workflows.Thursday;
 using MediatR;
 
@@ -21,6 +22,7 @@ namespace LatinoNETOnline.ScheduleJob
 
         private readonly IReadOnlyDictionary<Enums.Workflows, IRequest> Pairs = new Dictionary<Enums.Workflows, IRequest>
             {
+                { Enums.Workflows.Emply, new EmplyRequest() },
                 { Enums.Workflows.Thursday, new ThursdayRequest() }
             };
     }
