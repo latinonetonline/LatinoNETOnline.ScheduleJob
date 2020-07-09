@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace LatinoNETOnline.ScheduleJob.Application.Services.Interfaces
+namespace LatinoNETOnline.ScheduleJob.Application.Services
 {
     public interface IJobApplicationService
     {

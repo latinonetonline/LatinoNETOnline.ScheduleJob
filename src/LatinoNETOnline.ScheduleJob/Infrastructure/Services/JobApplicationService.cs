@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using GitHubActionSharp;
-using LatinoNETOnline.ScheduleJob.Application.Services.Interfaces;
+using LatinoNETOnline.ScheduleJob.Application.Enums;
+using LatinoNETOnline.ScheduleJob.Application.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace LatinoNETOnline.ScheduleJob.Application.Services
+namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
 {
     public class JobApplicationService : IJobApplicationService
     {
@@ -25,7 +26,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Services
         {
             _logger.LogInformation("Starting application");
 
-            string workflow = _gitHubActionContext.GetParameter(Enums.Parameters.Workflow).Trim();
+            string workflow = _gitHubActionContext.GetParameter(Parameters.Workflow).Trim();
 
             _logger.LogInformation($"Received workflow name: {workflow}");
 

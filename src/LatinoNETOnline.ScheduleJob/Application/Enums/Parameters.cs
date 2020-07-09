@@ -1,6 +1,6 @@
 ﻿using GitHubActionSharp;
 
-namespace LatinoNETOnline.ScheduleJob.Enums
+namespace LatinoNETOnline.ScheduleJob.Application.Enums
 {
     public enum Parameters
     {
@@ -18,5 +18,8 @@ namespace LatinoNETOnline.ScheduleJob.Enums
 
         [Parameter("twitter-access-token-private")]
         TwitterAccessTokenPrivate,
+
+        [Parameter("github-access-token")]
+        GitHubAccessToken,
     }
 }

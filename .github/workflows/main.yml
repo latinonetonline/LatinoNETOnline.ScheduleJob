@@ -36,3 +36,4 @@ jobs:
     - uses: ./
       with:
         workflow: 'Emply'
+        github-access-token: ${{ secrets.GITHUB_TOKEN }}

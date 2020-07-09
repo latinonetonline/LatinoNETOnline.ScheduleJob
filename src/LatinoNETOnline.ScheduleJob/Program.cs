@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using GitHubActionSharp;
 using LatinoNETOnline.ScheduleJob.Application.Services;
-using LatinoNETOnline.ScheduleJob.Application.Services.Interfaces;
+using LatinoNETOnline.ScheduleJob.Infrastructure;
+using LatinoNETOnline.ScheduleJob.Infrastructure.Providers;
+using LatinoNETOnline.ScheduleJob.Infrastructure.Services;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -17,12 +19,13 @@ namespace LatinoNETOnline.ScheduleJob
 
             WorkflowsRequestsContext workflowsRequestsContext = new WorkflowsRequestsContext();
 
-            //setup our DI
             var serviceProvider = new ServiceCollection()
                 .AddLogging(x => x.AddConsole())
+                .AddGitHubClient(actionContext)
                 .AddSingleton(actionContext)
                 .AddSingleton(workflowsRequestsContext)
                 .AddSingleton<IJobApplicationService, JobApplicationService>()
+                .AddSingleton<IEventService, EventService>()
                 .AddMediatR(typeof(Program))
                 .BuildServiceProvider();
 
