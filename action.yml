@@ -1,7 +1,7 @@
 name: 'Template NET Core Action'
 description: 'Console greet whoever you tell'
 inputs:
-  workflow: 
+  handler-name: 
     required: true
   job: 
     required: false

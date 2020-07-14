@@ -9,7 +9,7 @@ using LatinoNETOnline.ScheduleJob.Domain;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace LatinoNETOnline.ScheduleJob.Application.Workflows.Thursday
+namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Thursday
 {
     public class ThursdayHandler : AsyncRequestHandler<ThursdayRequest>
     {

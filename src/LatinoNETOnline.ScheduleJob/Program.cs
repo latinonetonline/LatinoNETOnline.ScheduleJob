@@ -17,13 +17,13 @@ namespace LatinoNETOnline.ScheduleJob
             GitHubActionContext actionContext = new GitHubActionContext(args);
             actionContext.LoadParameters();
 
-            WorkflowsRequestsContext workflowsRequestsContext = new WorkflowsRequestsContext();
+            HandlerRequestContext handlerRequestContext = new HandlerRequestContext();
 
             var serviceProvider = new ServiceCollection()
                 .AddLogging(x => x.AddConsole())
                 .AddGitHubClient(actionContext)
                 .AddSingleton(actionContext)
-                .AddSingleton(workflowsRequestsContext)
+                .AddSingleton(handlerRequestContext)
                 .AddSingleton<IJobApplicationService, JobApplicationService>()
                 .AddSingleton<IEventService, EventService>()
                 .AddSingleton<ITwitterService, TwitterService>()

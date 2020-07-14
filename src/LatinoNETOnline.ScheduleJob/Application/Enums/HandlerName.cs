@@ -1,6 +1,6 @@
 ﻿namespace LatinoNETOnline.ScheduleJob.Application.Enums
 {
-    public enum Workflows
+    public enum HandlerName
     {
         Test,
         Thursday,

@@ -5,7 +5,7 @@ using LatinoNETOnline.ScheduleJob.Domain;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace LatinoNETOnline.ScheduleJob.Application.Workflows.Test
+namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Test
 {
     public class TestHandler : AsyncRequestHandler<TestRequest>
     {

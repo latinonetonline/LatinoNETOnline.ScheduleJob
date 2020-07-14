@@ -4,8 +4,11 @@ namespace LatinoNETOnline.ScheduleJob.Application.Enums
 {
     public enum Parameters
     {
-        [Parameter("workflow")]
-        Workflow,
+        [Parameter("handler-name")]
+        HandlerName,
+
+        [Parameter("object-scheduled-id")]
+        ObjectScheduledId,
 
         [Parameter("twitter-consumer-id")]
         TwitterConsumerId,

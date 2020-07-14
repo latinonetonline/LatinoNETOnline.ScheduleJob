@@ -11,10 +11,10 @@ jobs:
         
     steps:
     - name: Echo Workflow Name
-      run: 'echo "Dispatch Workflow: ${{ github.event.client_payload.workflowName }}"'
+      run: 'echo "Dispatch Workflow: ${{ github.event.client_payload.handlerName }}"'
         
     - name: Echo Job Id
-      run: 'echo "Dispatch Job: ${{ github.event.client_payload.idJob }}"'
+      run: 'echo "Dispatch Job: ${{ github.event.client_payload.objectScheduledId }}"'
 
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -24,8 +24,8 @@ jobs:
 
     - uses: ./
       with:
-        workflow: ${{ github.event.client_payload.workflowName }}
-        job: ${{ github.event.client_payload.idJob }}
+        handler-name: ${{ github.event.client_payload.handlerName }}
+        object-scheduled-id: ${{ github.event.client_payload.objectScheduledId }}
         twitter-consumer-id: ${{ secrets.TWITTER_CONSUMER_ID }}
         twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
         twitter-access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}

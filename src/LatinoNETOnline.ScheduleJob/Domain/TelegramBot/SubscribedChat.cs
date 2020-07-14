@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LatinoNETOnline.ScheduleJob.Domain.TelegramBot
+﻿namespace LatinoNETOnline.ScheduleJob.Domain.TelegramBot
 {
     public class SubscribedChat
     {

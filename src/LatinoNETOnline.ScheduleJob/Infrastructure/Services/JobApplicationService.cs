@@ -11,14 +11,14 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
     {
         private readonly ILogger<JobApplicationService> _logger;
         private readonly GitHubActionContext _gitHubActionContext;
-        private readonly WorkflowsRequestsContext _workflowsRequestsContext;
+        private readonly HandlerRequestContext _handlerRequestContext;
         private readonly IMediator _mediator;
 
-        public JobApplicationService(ILoggerFactory loggerFactory, GitHubActionContext gitHubActionContext, WorkflowsRequestsContext workflowsRequestsContext, IMediator mediator)
+        public JobApplicationService(ILoggerFactory loggerFactory, GitHubActionContext gitHubActionContext, HandlerRequestContext handlerRequestContext, IMediator mediator)
         {
             _logger = loggerFactory.CreateLogger<JobApplicationService>();
             _gitHubActionContext = gitHubActionContext;
-            _workflowsRequestsContext = workflowsRequestsContext;
+            _handlerRequestContext = handlerRequestContext;
             _mediator = mediator;
         }
 
@@ -26,11 +26,11 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
         {
             _logger.LogInformation("Starting application");
 
-            string workflow = _gitHubActionContext.GetParameter(Parameters.Workflow).Trim();
+            string handlerName = _gitHubActionContext.GetParameter(Parameters.HandlerName).Trim();
 
-            _logger.LogInformation($"Received workflow name: {workflow}");
+            _logger.LogInformation($"Received handler name: {handlerName}");
 
-            IRequest request = _workflowsRequestsContext.GetRequest(workflow);
+            IRequest request = _handlerRequestContext.GetRequest(handlerName);
 
             await _mediator.Send(request);
 
