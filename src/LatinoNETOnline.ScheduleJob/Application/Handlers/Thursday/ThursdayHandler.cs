@@ -30,7 +30,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Thursday
 
         protected override async Task Handle(ThursdayRequest request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Starting Thursday Workflow");
+            _logger.LogInformation("Starting Thursday Handler");
 
             Task telegramTask = _telegramService.AnnouncementSendNextEvent();
 
@@ -56,6 +56,8 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Thursday
             _logger.LogInformation($"Tweet created: {tweetUri}");
 
             Task.WaitAll(telegramTask);
+
+            _logger.LogInformation("Finish Thursday Handler");
         }
 
         string BuildTweetText1(Event @event)

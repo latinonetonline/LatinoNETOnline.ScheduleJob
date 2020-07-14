@@ -22,7 +22,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Test
 
         protected override async Task Handle(TestRequest request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Starting Emply Workflow");
+            _logger.LogInformation("Starting Test Handler");
 
             Event @event = await _eventService.GetNextEventAsync();
 
@@ -30,7 +30,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Test
 
             await _telegramService.GetSubscribedChats();
 
-            _logger.LogInformation("Finish Emply Workflow");
+            _logger.LogInformation("Finish Test Handler");
         }
     }
 }
