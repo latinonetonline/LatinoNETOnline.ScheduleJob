@@ -4,6 +4,7 @@
     {
         Test,
         Thursday,
-        Friday
+        Social,
+        Twitter
     }
 }

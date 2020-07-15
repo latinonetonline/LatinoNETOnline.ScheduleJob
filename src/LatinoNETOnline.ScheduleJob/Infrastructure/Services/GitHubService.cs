@@ -35,5 +35,18 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
                 return null;
             }
         }
+
+        public async Task DeleteFileAsync(long repositoryId, string path, string fileName)
+        {
+            IReadOnlyList<RepositoryContent> contents = await _githubClient.Repository.Content.GetAllContents(repositoryId, Path.Combine(path, fileName));
+            RepositoryContent repositoryContent = contents.First();
+
+            await _githubClient.Repository.Content.DeleteFile(
+                repositoryId,
+                    Path.Combine(path, fileName),
+                    new DeleteFileRequest($"Delete {fileName}",
+                                          repositoryContent.Sha)
+                    );
+        }
     }
 }

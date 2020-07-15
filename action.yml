@@ -3,7 +3,7 @@ description: 'Console greet whoever you tell'
 inputs:
   handler-name: 
     required: true
-  job: 
+  object-scheduled-id: 
     required: false
   twitter-consumer-id:
     required: true

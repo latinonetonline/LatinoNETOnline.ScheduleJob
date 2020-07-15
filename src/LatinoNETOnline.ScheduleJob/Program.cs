@@ -27,6 +27,7 @@ namespace LatinoNETOnline.ScheduleJob
                 .AddSingleton<IJobApplicationService, JobApplicationService>()
                 .AddSingleton<IEventService, EventService>()
                 .AddSingleton<ITwitterService, TwitterService>()
+                .AddSingleton<IObjectScheduledService, ObjectScheduledService>()
                 .AddSingleton<IIdentityService, IdentityService>()
                 .AddHttpClientServices()
                 .AddMediatR(typeof(Program))
