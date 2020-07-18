@@ -39,4 +39,4 @@ jobs:
         twitter-access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
         twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         identity-client-secret: ${{ secrets.IDENTITY_CLIENT_SECRET }}
-        github-access-token: ${{ secrets.GITHUB_TOKEN }}
+        github-access-token: ${{ secrets.GH_TOKEN }}
