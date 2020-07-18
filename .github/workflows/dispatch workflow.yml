@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
         
     steps:
-    - name: Echo Workflow Name
-      run: 'echo "Dispatch Workflow: ${{ github.event.client_payload.handlerName }}"'
+    - name: Echo Handler Name
+      run: 'echo "Dispatch Handler: ${{ github.event.client_payload.handlerName }}"'
         
-    - name: Echo Job Id
-      run: 'echo "Dispatch Job: ${{ github.event.client_payload.objectScheduledId }}"'
+    - name: Echo Dispatch Object Scheduled Id
+      run: 'echo "Dispatch Object Scheduled: ${{ github.event.client_payload.objectScheduledId }}"'
 
     - uses: actions/checkout@v2
     - name: Setup .NET Core

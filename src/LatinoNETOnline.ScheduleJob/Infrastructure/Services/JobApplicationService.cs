@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
 {
+
     public class JobApplicationService : IJobApplicationService
     {
         private readonly ILogger<JobApplicationService> _logger;
@@ -54,9 +55,14 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
 
                 var fileContent = await _objectScheduledService.GetObjectScheduledAsync(Guid.Parse(objectScheduledId));
 
-                _logger.LogInformation($"Object Scheduled Type: {request.GetType().Name}");
+                if (fileContent is null || fileContent.Content is null)
+                {
+                    _logger.LogError($"There was an error getting the Object Scheduled");
+                }
 
                 _logger.LogInformation($"Object Scheduled: {fileContent.Content}");
+
+                _logger.LogInformation($"Object Scheduled Type: {request.GetType().Name}");
 
                 request = (IRequest)JsonSerializer.Deserialize(fileContent.Content, request.GetType());
 
