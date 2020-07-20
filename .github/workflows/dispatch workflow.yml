@@ -15,6 +15,9 @@ jobs:
         
     - name: Echo Dispatch Object Scheduled Id
       run: 'echo "Dispatch Object Scheduled: ${{ github.event.client_payload.objectScheduledId }}"'
+    
+    - name: Echo Dispatch Cron Id
+      run: 'echo "Dispatch Cron Id: ${{ github.event.client_payload.cronId }}"'
 
     - uses: actions/checkout@v2
     - name: Setup .NET Core
