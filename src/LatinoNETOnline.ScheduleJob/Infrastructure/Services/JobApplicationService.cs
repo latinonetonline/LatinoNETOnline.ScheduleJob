@@ -58,7 +58,7 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
 
             _logger.LogInformation($"Received Cron Id: {easyCronId}");
 
-            if (string.IsNullOrWhiteSpace(easyCronId))
+            if (!string.IsNullOrWhiteSpace(easyCronId))
             {
                 _logger.LogInformation($"Disabling Cron");
 
@@ -67,7 +67,7 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
                 _logger.LogInformation($"Cron Disabled");
             }
 
-            if (string.IsNullOrWhiteSpace(objectScheduledId))
+            if (!string.IsNullOrWhiteSpace(objectScheduledId))
             {
                 _logger.LogInformation($"Deleting Object Scheduled");
 
