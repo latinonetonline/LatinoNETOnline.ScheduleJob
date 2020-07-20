@@ -4,6 +4,6 @@ namespace LatinoNETOnline.ScheduleJob.Application.Services
 {
     public interface IJobApplicationService
     {
-        Task StartJob();
+        Task ExecuteJob();
     }
 }

@@ -30,10 +30,18 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
             _easyCronService = easyCronService;
         }
 
-        public async Task StartJob()
+        public async Task ExecuteJob()
         {
             _logger.LogInformation("Starting application");
 
+            await StartJob();
+            await DeleteJob();
+
+            _logger.LogInformation("All done!");
+        }
+
+        private async Task StartJob()
+        {
             string handlerName = _gitHubActionContext.GetParameter(Parameters.HandlerName).Trim();
 
             _logger.LogInformation($"Received handler name: {handlerName}");
@@ -41,8 +49,32 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
             IRequest request = await GetRequest(handlerName);
 
             await _mediator.Send(request);
+        }
 
-            _logger.LogInformation("All done!");
+        private async Task DeleteJob()
+        {
+            string objectScheduledId = _gitHubActionContext.GetParameter(Parameters.ObjectScheduledId).Trim();
+            string easyCronId = _gitHubActionContext.GetParameter(Parameters.CronId).Trim();
+
+            _logger.LogInformation($"Received Cron Id: {easyCronId}");
+
+            if (string.IsNullOrWhiteSpace(easyCronId))
+            {
+                _logger.LogInformation($"Disabling Cron");
+
+                await _easyCronService.DisableJob(long.Parse(easyCronId));
+
+                _logger.LogInformation($"Cron Disabled");
+            }
+
+            if (string.IsNullOrWhiteSpace(objectScheduledId))
+            {
+                _logger.LogInformation($"Deleting Object Scheduled");
+
+                await _objectScheduledService.DeleteObjectScheduledAsync(Guid.Parse(objectScheduledId));
+
+                _logger.LogInformation($"Object Scheduled Deleted");
+            }
         }
 
         private async Task<IRequest> GetRequest(string handlerName)
@@ -52,7 +84,6 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
             if (request is IObjectScheduledRequest)
             {
                 string objectScheduledId = _gitHubActionContext.GetParameter(Parameters.ObjectScheduledId).Trim();
-                string easyCronId = _gitHubActionContext.GetParameter(Parameters.CronId).Trim();
 
                 _logger.LogInformation($"Received object scheduled id: {objectScheduledId}");
 
@@ -68,18 +99,6 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
                 _logger.LogInformation($"Object Scheduled Type: {request.GetType().Name}");
 
                 request = (IRequest)JsonSerializer.Deserialize(fileContent.Content, request.GetType());
-
-                _logger.LogInformation($"Disabling Cron");
-
-                await _easyCronService.DisableJob(long.Parse(easyCronId));
-
-                _logger.LogInformation($"Cron Disabled");
-
-                _logger.LogInformation($"Deleting Object Scheduled");
-
-                await _objectScheduledService.DeleteObjectScheduledAsync(Guid.Parse(objectScheduledId));
-
-                _logger.LogInformation($"Object Scheduled Deleted");
             }
 
             return request;

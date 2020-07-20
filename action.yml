@@ -5,6 +5,10 @@ inputs:
     required: true
   object-scheduled-id: 
     required: false
+    default: ''
+  cron-id: 
+    required: false
+    default: ''
   twitter-consumer-id:
     required: true
   twitter-consumer-secret:

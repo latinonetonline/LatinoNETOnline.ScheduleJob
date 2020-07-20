@@ -36,7 +36,7 @@ namespace LatinoNETOnline.ScheduleJob
 
             var jobApplicationService = serviceProvider.GetService<IJobApplicationService>();
 
-            await jobApplicationService.StartJob();
+            await jobApplicationService.ExecuteJob();
         }
     }
 }
