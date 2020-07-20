@@ -26,9 +26,11 @@ jobs:
       with:
         handler-name: ${{ github.event.client_payload.handlerName }}
         object-scheduled-id: ${{ github.event.client_payload.objectScheduledId }}
+        cron-id: ${{ github.event.client_payload.cronId }}
         twitter-consumer-id: ${{ secrets.TWITTER_CONSUMER_ID }}
         twitter-consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
         twitter-access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
         twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         identity-client-secret: ${{ secrets.IDENTITY_CLIENT_SECRET }}
         github-access-token: ${{ secrets.GH_TOKEN }}
+        easy-cron-client-secret: ${{ secrets.EASY_CRON_CLIENT_SECRET }}

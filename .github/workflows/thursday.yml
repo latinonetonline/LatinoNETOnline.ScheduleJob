@@ -32,3 +32,4 @@ jobs:
         twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         identity-client-secret: ${{ secrets.IDENTITY_CLIENT_SECRET }}
         github-access-token: ${{ secrets.GH_TOKEN }}
+        easy-cron-client-secret: ${{ secrets.EASY_CRON_CLIENT_SECRET }}

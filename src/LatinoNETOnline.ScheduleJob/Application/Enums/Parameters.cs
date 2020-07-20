@@ -10,6 +10,9 @@ namespace LatinoNETOnline.ScheduleJob.Application.Enums
         [Parameter("object-scheduled-id")]
         ObjectScheduledId,
 
+        [Parameter("cron-id")]
+        CronId,
+
         [Parameter("twitter-consumer-id")]
         TwitterConsumerId,
 
@@ -27,5 +30,8 @@ namespace LatinoNETOnline.ScheduleJob.Application.Enums
 
         [Parameter("identity-client-secret")]
         IdentityClientSecret,
+
+        [Parameter("easy-cron-client-secret")]
+        EasyCronlientSecret,
     }
 }

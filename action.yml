@@ -17,6 +17,8 @@ inputs:
     required: true
   github-access-token:
     required: true
+  easy-cron-client-secret:
+    required: true
 runs:
   using: 'node12'
   main: 'index.js'

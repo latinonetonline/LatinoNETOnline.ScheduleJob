@@ -18,14 +18,16 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
         private readonly HandlerRequestContext _handlerRequestContext;
         private readonly IMediator _mediator;
         private readonly IObjectScheduledService _objectScheduledService;
+        private readonly IEasyCronService _easyCronService;
 
-        public JobApplicationService(ILoggerFactory loggerFactory, GitHubActionContext gitHubActionContext, HandlerRequestContext handlerRequestContext, IMediator mediator, IObjectScheduledService objectScheduledService)
+        public JobApplicationService(ILoggerFactory loggerFactory, GitHubActionContext gitHubActionContext, HandlerRequestContext handlerRequestContext, IMediator mediator, IObjectScheduledService objectScheduledService, IEasyCronService easyCronService)
         {
             _logger = loggerFactory.CreateLogger<JobApplicationService>();
             _gitHubActionContext = gitHubActionContext;
             _handlerRequestContext = handlerRequestContext;
             _mediator = mediator;
             _objectScheduledService = objectScheduledService;
+            _easyCronService = easyCronService;
         }
 
         public async Task StartJob()
@@ -50,6 +52,7 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
             if (request is IObjectScheduledRequest)
             {
                 string objectScheduledId = _gitHubActionContext.GetParameter(Parameters.ObjectScheduledId).Trim();
+                string easyCronId = _gitHubActionContext.GetParameter(Parameters.CronId).Trim();
 
                 _logger.LogInformation($"Received object scheduled id: {objectScheduledId}");
 
@@ -65,6 +68,12 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
                 _logger.LogInformation($"Object Scheduled Type: {request.GetType().Name}");
 
                 request = (IRequest)JsonSerializer.Deserialize(fileContent.Content, request.GetType());
+
+                _logger.LogInformation($"Disabling Cron");
+
+                await _easyCronService.DisableJob(long.Parse(easyCronId));
+
+                _logger.LogInformation($"Cron Disabled");
 
                 _logger.LogInformation($"Deleting Object Scheduled");
 

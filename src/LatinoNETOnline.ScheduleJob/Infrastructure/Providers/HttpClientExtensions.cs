@@ -12,6 +12,12 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Providers
             {
                 o.BaseAddress = new System.Uri("https://latinonetonlinebot.herokuapp.com/");
             });
+
+            services.AddHttpClient<IEasyCronService, EasyCronService>(o =>
+            {
+                o.BaseAddress = new System.Uri("https://www.easycron.com/");
+            });
+
             return services;
         }
     }
