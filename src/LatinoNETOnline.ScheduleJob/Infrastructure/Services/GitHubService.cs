@@ -48,5 +48,20 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
                                           repositoryContent.Sha)
                     );
         }
+
+        public async Task UpdateFileAsync(long repositoryId, string master, string path, string fileName, string content)
+        {
+            IReadOnlyList<RepositoryContent> contents = await _githubClient.Repository.Content.GetAllContents(repositoryId, Path.Combine(path, fileName));
+            RepositoryContent repositoryContent = contents.First();
+
+            await _githubClient.Repository.Content.UpdateFile(
+                repositoryId,
+                    Path.Combine(path, fileName),
+                    new UpdateFileRequest($"Update {fileName}",
+                                          content,
+                                          repositoryContent.Sha,
+                                          master)
+                    );
+        }
     }
 }

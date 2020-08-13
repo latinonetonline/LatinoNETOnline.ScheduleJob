@@ -5,6 +5,7 @@
         Test,
         Thursday,
         Social,
-        Twitter
+        Twitter,
+        PublishArticle
     }
 }

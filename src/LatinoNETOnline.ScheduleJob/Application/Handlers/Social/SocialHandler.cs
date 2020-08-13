@@ -24,6 +24,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Social
             _httpClient = httpClientFactory.CreateClient();
             _telegramService = telegramService;
         }
+
         protected override Task Handle(SocialRequest request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
