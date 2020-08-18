@@ -3,8 +3,10 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+
 using LatinoNETOnline.ScheduleJob.Application.Services;
 using LatinoNETOnline.ScheduleJob.Domain.TelegramBot;
+
 using Microsoft.Extensions.Logging;
 
 namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services

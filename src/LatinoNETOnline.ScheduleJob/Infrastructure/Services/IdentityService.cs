@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+
 using GitHubActionSharp;
+
 using IdentityModel.Client;
+
 using LatinoNETOnline.ScheduleJob.Application.Enums;
 using LatinoNETOnline.ScheduleJob.Application.Services;
+
 using Microsoft.Extensions.Logging;
+
 using static IdentityModel.OidcConstants;
 
 namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services

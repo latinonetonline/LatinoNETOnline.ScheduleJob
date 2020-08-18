@@ -1,8 +1,11 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+
 using GitHubActionSharp;
+
 using LatinoNETOnline.ScheduleJob.Application.Enums;
 using LatinoNETOnline.ScheduleJob.Application.Services;
+
 using Microsoft.Extensions.Logging;
 
 namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services

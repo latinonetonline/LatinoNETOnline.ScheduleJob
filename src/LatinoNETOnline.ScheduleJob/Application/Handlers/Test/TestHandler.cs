@@ -1,8 +1,11 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+
 using LatinoNETOnline.ScheduleJob.Application.Services;
 using LatinoNETOnline.ScheduleJob.Domain;
+
 using MediatR;
+
 using Microsoft.Extensions.Logging;
 
 namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Test

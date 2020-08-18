@@ -1,10 +1,14 @@
 ﻿using System.Threading.Tasks;
+
 using GitHubActionSharp;
+
 using LatinoNETOnline.ScheduleJob.Application.Services;
 using LatinoNETOnline.ScheduleJob.Infrastructure;
 using LatinoNETOnline.ScheduleJob.Infrastructure.Providers;
 using LatinoNETOnline.ScheduleJob.Infrastructure.Services;
+
 using MediatR;
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 

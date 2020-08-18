@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using System.Threading.Tasks;
+
 using LatinoNETOnline.ScheduleJob.Application.Services;
 using LatinoNETOnline.ScheduleJob.Domain;
 

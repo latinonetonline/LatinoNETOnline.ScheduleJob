@@ -2,8 +2,11 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+
 using LatinoNETOnline.ScheduleJob.Application.Services;
+
 using MediatR;
+
 using Microsoft.Extensions.Logging;
 
 namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Social

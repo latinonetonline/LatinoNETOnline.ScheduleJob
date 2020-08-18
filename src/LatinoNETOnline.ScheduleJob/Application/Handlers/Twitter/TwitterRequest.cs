@@ -1,4 +1,5 @@
 ﻿using System;
+
 using LatinoNETOnline.ScheduleJob.Domain.ObjectScheduleds;
 
 namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Twitter

@@ -1,8 +1,11 @@
 ﻿using GitHubActionSharp;
+
 using LatinoNETOnline.ScheduleJob.Application.Enums;
 using LatinoNETOnline.ScheduleJob.Application.Services;
 using LatinoNETOnline.ScheduleJob.Infrastructure.Services;
+
 using Microsoft.Extensions.DependencyInjection;
+
 using Octokit;
 
 namespace LatinoNETOnline.ScheduleJob.Infrastructure.Providers

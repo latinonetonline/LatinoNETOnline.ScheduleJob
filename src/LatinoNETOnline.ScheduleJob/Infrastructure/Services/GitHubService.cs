@@ -2,8 +2,10 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
 using LatinoNETOnline.ScheduleJob.Application.Services;
 using LatinoNETOnline.ScheduleJob.Domain;
+
 using Octokit;
 
 namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services

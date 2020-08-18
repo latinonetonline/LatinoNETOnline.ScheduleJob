@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+
 using GitHubActionSharp;
+
 using LatinoNETOnline.ScheduleJob.Application.Enums;
 using LatinoNETOnline.ScheduleJob.Application.Services;
+
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;

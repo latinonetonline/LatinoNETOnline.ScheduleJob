@@ -1,5 +1,6 @@
 using LatinoNETOnline.ScheduleJob.Application.Services;
 using LatinoNETOnline.ScheduleJob.Infrastructure.Services;
+
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LatinoNETOnline.ScheduleJob.Infrastructure.Providers
