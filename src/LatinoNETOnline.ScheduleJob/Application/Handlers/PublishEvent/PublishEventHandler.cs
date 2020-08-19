@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
+using LatinoNETOnline.ScheduleJob.Application.Extensions;
 using LatinoNETOnline.ScheduleJob.Application.Services;
 
 using MediatR;
@@ -33,6 +34,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.PublishEvent
             var @event = await _eventService.Get(request.Date.Year, request.Date.Month, request.Guid);
 
             var text = await _ocrSpaceService.ReadImageText(new Uri(@event.ImageUrl));
+            text = text.RemoveDiacritics();
 
             var results = DateTimeRecognizer.RecognizeDateTime(text, Culture.Spanish);
 
@@ -44,7 +46,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.PublishEvent
                 WriteIndented = true
             });
 
-            if (text.ToLower().Contains(@event.Title.ToLower()))
+            if (text.ToLower().Contains(@event.Title.ToLower().RemoveDiacritics()))
             {
                 _logger.LogInformation($"El título `{@event.Title}` se encuentra en la imagen.");
             }
@@ -53,7 +55,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.PublishEvent
                 _logger.LogWarning($"El título `{@event.Title}` no coincide en la imagen.");
             }
 
-            if (text.ToLower().Contains(@event.Speaker.ToLower()))
+            if (text.ToLower().Contains(@event.Speaker.ToLower().RemoveDiacritics()))
             {
                 _logger.LogInformation($"El speaker `{@event.Speaker}` se encuentra en la imagen.");
             }
