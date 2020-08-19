@@ -5,19 +5,14 @@
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 	</PropertyGroup>
 
-	<ItemGroup>
-	  <None Remove="Assets\TesseractEngine\eng.traineddata" />
-	  <None Remove="Assets\TesseractEngine\pdf.ttf" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="Assets\TesseractEngine\eng.traineddata">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="Assets\TesseractEngine\pdf.ttf">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	</ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\TesseractEngine\eng.traineddata">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\TesseractEngine\pdf.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="GitHubActionSharp" Version="1.0.1" />
