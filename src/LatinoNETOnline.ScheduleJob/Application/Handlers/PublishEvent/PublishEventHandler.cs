@@ -18,21 +18,21 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.PublishEvent
     {
         private readonly ILogger<PublishEventHandler> _logger;
         private readonly IEventService _eventService;
-        private readonly ITesseractEngineService _tesseractEngineService;
+        private readonly IOcrService _ocrSpaceService;
 
 
-        public PublishEventHandler(IEventService eventService, ILoggerFactory loggerFactory, ITesseractEngineService tesseractEngineService)
+        public PublishEventHandler(IEventService eventService, ILoggerFactory loggerFactory, IOcrService ocrSpaceService)
         {
             _eventService = eventService;
             _logger = loggerFactory.CreateLogger<PublishEventHandler>();
-            _tesseractEngineService = tesseractEngineService;
+            _ocrSpaceService = ocrSpaceService;
         }
 
         protected override async Task Handle(PublishEventRequest request, CancellationToken cancellationToken)
         {
             var @event = await _eventService.Get(request.Date.Year, request.Date.Month, request.Guid);
 
-            var text = await _tesseractEngineService.ReadImageText(new Uri(@event.ImageUrl));
+            var text = await _ocrSpaceService.ReadImageText(new Uri(@event.ImageUrl));
 
             var results = DateTimeRecognizer.RecognizeDateTime(text, Culture.Spanish);
 

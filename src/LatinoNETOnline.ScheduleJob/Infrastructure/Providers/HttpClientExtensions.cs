@@ -19,6 +19,11 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Providers
                 o.BaseAddress = new System.Uri("https://www.easycron.com/");
             });
 
+            services.AddHttpClient<IOcrService, OcrService>(o =>
+            {
+                o.BaseAddress = new System.Uri("https://api.ocr.space/");
+            });
+
             return services;
         }
     }

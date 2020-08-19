@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace LatinoNETOnline.ScheduleJob.Application.Services
 {
-    public interface ITesseractEngineService
+    public interface IOcrService
     {
         Task<string> ReadImageText(Uri uri);
     }

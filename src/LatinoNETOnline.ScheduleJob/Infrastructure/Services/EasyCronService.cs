@@ -20,7 +20,7 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure.Services
         {
             _httpClient = httpclient;
             _logger = loggerFactory.CreateLogger<EasyCronService>();
-            _easyCronClientSecret = gitHubActionContext.GetParameter(Parameters.EasyCronlientSecret);
+            _easyCronClientSecret = gitHubActionContext.GetParameter(Parameters.EasyCronClientSecret);
         }
 
         public async Task DisableJob(long cronId)

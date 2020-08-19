@@ -23,6 +23,8 @@ inputs:
     required: true
   easy-cron-client-secret:
     required: true
+  ocr-space-api-key:
+    required: true
 runs:
   using: 'node12'
   main: 'index.js'

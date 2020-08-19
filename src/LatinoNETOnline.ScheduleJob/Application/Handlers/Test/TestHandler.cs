@@ -17,15 +17,15 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Test
         private readonly IEventService _eventService;
         private readonly ITelegramService _telegramService;
         private readonly IEasyCronService _easyCronService;
-        private readonly ITesseractEngineService _tesseractEngineService;
+        private readonly IOcrService _ocrSpaceService;
 
-        public TestHandler(ILoggerFactory loggerFactory, IEventService eventService, ITelegramService telegramService, IEasyCronService easyCronService, ITesseractEngineService tesseractEngineService)
+        public TestHandler(ILoggerFactory loggerFactory, IEventService eventService, ITelegramService telegramService, IEasyCronService easyCronService, IOcrService ocrSpaceService)
         {
             _logger = loggerFactory.CreateLogger<TestHandler>();
             _eventService = eventService;
             _telegramService = telegramService;
             _easyCronService = easyCronService;
-            _tesseractEngineService = tesseractEngineService;
+            _ocrSpaceService = ocrSpaceService;
         }
 
         protected override async Task Handle(TestRequest request, CancellationToken cancellationToken)
@@ -40,7 +40,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Test
 
             await _easyCronService.List();
 
-            string text = await _tesseractEngineService.ReadImageText(new Uri(@event.ImageUrl));
+            string text = await _ocrSpaceService.ReadImageText(new Uri(@event.ImageUrl));
 
             _logger.LogInformation($"Text (GetText): \r\n{text}");
 

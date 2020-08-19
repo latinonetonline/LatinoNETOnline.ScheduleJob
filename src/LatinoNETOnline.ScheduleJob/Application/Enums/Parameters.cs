@@ -32,6 +32,10 @@ namespace LatinoNETOnline.ScheduleJob.Application.Enums
         IdentityClientSecret,
 
         [Parameter("easy-cron-client-secret")]
-        EasyCronlientSecret,
+        EasyCronClientSecret,
+
+        [Parameter("ocr-space-api-key")]
+        OcrSpaceApiKey
+
     }
 }
