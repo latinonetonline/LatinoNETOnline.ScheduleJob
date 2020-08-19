@@ -34,6 +34,7 @@ namespace LatinoNETOnline.ScheduleJob
                 .AddSingleton<IObjectScheduledService, ObjectScheduledService>()
                 .AddSingleton<IIdentityService, IdentityService>()
                 .AddSingleton<IEasyCronService, EasyCronService>()
+                .AddSingleton<ITesseractEngineService, TesseractEngineService>()
                 .AddHttpClientServices()
                 .AddMediatR(typeof(Program))
                 .BuildServiceProvider();

@@ -16,5 +16,8 @@
 		<PackageReference Include="TweetinviAPI" Version="5.0.0-alpha-6" />
 		<PackageReference Include="IdentityModel" Version="4.3.0" />
 		<PackageReference Include="System.Net.Http.Json" Version="3.2.1" />
+
+    <PackageReference Include="Tesseract" Version="4.1.0-beta1" />
+    <PackageReference Include="Microsoft.Recognizers.Text.DateTime" Version="1.4.0" />
 	</ItemGroup>
 </Project>

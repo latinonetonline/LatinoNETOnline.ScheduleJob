@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 using LatinoNETOnline.ScheduleJob.Application.Services;
@@ -16,13 +17,15 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Test
         private readonly IEventService _eventService;
         private readonly ITelegramService _telegramService;
         private readonly IEasyCronService _easyCronService;
+        private readonly ITesseractEngineService _tesseractEngineService;
 
-        public TestHandler(ILoggerFactory loggerFactory, IEventService eventService, ITelegramService telegramService, IEasyCronService easyCronService)
+        public TestHandler(ILoggerFactory loggerFactory, IEventService eventService, ITelegramService telegramService, IEasyCronService easyCronService, ITesseractEngineService tesseractEngineService)
         {
             _logger = loggerFactory.CreateLogger<TestHandler>();
             _eventService = eventService;
             _telegramService = telegramService;
             _easyCronService = easyCronService;
+            _tesseractEngineService = tesseractEngineService;
         }
 
         protected override async Task Handle(TestRequest request, CancellationToken cancellationToken)
@@ -36,6 +39,10 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Test
             await _telegramService.GetSubscribedChats();
 
             await _easyCronService.List();
+
+            string text = await _tesseractEngineService.ReadImageText(new Uri(@event.ImageUrl));
+
+            _logger.LogInformation($"Text (GetText): \r\n{text}");
 
             _logger.LogInformation("Finish Test Handler");
         }

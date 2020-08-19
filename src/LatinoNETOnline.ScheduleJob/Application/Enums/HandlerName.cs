@@ -6,6 +6,7 @@
         Thursday,
         Social,
         Twitter,
-        PublishArticle
+        PublishArticle,
+        PublishEvent
     }
 }

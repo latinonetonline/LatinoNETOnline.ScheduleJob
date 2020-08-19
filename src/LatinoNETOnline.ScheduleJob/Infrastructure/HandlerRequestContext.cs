@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using LatinoNETOnline.ScheduleJob.Application.Enums;
 using LatinoNETOnline.ScheduleJob.Application.Handlers.PublishArticle;
+using LatinoNETOnline.ScheduleJob.Application.Handlers.PublishEvent;
 using LatinoNETOnline.ScheduleJob.Application.Handlers.Social;
 using LatinoNETOnline.ScheduleJob.Application.Handlers.Test;
 using LatinoNETOnline.ScheduleJob.Application.Handlers.Thursday;
@@ -31,7 +32,8 @@ namespace LatinoNETOnline.ScheduleJob.Infrastructure
                 { HandlerName.Thursday, new ThursdayRequest() },
                 { HandlerName.Social, new SocialRequest() },
                 { HandlerName.Twitter, new TwitterRequest() },
-                { HandlerName.PublishArticle, new PublishArticleRequest() }
+                { HandlerName.PublishArticle, new PublishArticleRequest() },
+                { HandlerName.PublishEvent, new PublishEventRequest() }
             };
     }
 }
