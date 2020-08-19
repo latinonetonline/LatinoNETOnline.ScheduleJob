@@ -62,7 +62,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.PublishEvent
                 _logger.LogWarning($"El speaker `{@event.Speaker}` no se encuentra en la imagen.");
             }
 
-            if (resultJson.Contains(@event.Date.ToString("yyyy-dd-MM")))
+            if (resultJson.Contains(@event.Date.ToString("yyyy-MM-dd")))
             {
                 _logger.LogInformation($"La fecha `{@event.Date.ToLongDateString()}` se encuentra en la imagen.");
             }

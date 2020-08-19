@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
+using LatinoNETOnline.ScheduleJob.Application.Extensions;
 using LatinoNETOnline.ScheduleJob.Application.Services;
 using LatinoNETOnline.ScheduleJob.Domain;
 
@@ -44,10 +45,11 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Test
             await _easyCronService.List();
 
             string text = await _ocrSpaceService.ReadImageText(new Uri(@event.ImageUrl));
+            text = text.RemoveDiacritics();
 
             _logger.LogInformation($"Text (GetText): \r\n{text}");
 
-            if (text.ToLower().Contains(@event.Title.ToLower()))
+            if (text.ToLower().Contains(@event.Title.ToLower().RemoveDiacritics()))
             {
                 _logger.LogInformation($"El título `{@event.Title}` se encuentra en la imagen.");
             }
@@ -56,7 +58,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Test
                 _logger.LogWarning($"El título `{@event.Title}` no coincide en la imagen.");
             }
 
-            if (text.ToLower().Contains(@event.Speaker.ToLower()))
+            if (text.ToLower().Contains(@event.Speaker.ToLower().RemoveDiacritics()))
             {
                 _logger.LogInformation($"El speaker `{@event.Speaker}` se encuentra en la imagen.");
             }
@@ -71,7 +73,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.Test
 
             _logger.LogInformation($"RecognizeDateTime: \r\n{resultJson}");
 
-            if (resultJson.Contains(@event.Date.ToString("yyyy-dd-MM")))
+            if (resultJson.Contains(@event.Date.ToString("yyyy-MM-dd")))
             {
                 _logger.LogInformation($"La fecha `{@event.Date.ToLongDateString()}` se encuentra en la imagen.");
             }
