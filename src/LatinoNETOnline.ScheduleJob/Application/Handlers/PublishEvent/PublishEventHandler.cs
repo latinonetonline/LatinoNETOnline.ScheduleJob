@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
+using LatinoNETOnline.ScheduleJob.Application.Exceptions;
 using LatinoNETOnline.ScheduleJob.Application.Extensions;
 using LatinoNETOnline.ScheduleJob.Application.Services;
 
@@ -71,6 +72,7 @@ namespace LatinoNETOnline.ScheduleJob.Application.Handlers.PublishEvent
             else
             {
                 _logger.LogError($"La fecha `{@event.Date.ToLongDateString()}` no se encuentra en la imagen.");
+                throw new EventImageConflictException($"La fecha `{@event.Date.ToLongDateString()}` no se encuentra en la imagen.");
             }
         }
     }
